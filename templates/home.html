@@ -1,3 +1,355 @@
-<h1>
-    Hello world
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Cover Type Prediction Interface</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid pt-12 text-center">
+        <div class="mt-4 p-5 bg-default rounded">
+            <h2>Forest Cover Type Prediction</h2>
+            <p>Kindly fill and submit the form below to get the cover type!</p> 
+        </div>
+    </div>
+    <div class="container" style="margin-bottom: 50px;">
+        <div class="card">
+            <!--<div class="card-header"></div>-->
+            <div class="card-body">
+                
+                <form action="{{ url_for('predict')}}" method="post">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="slope" placeholder="Enter slope" name="Slope">
+                                <label for="slope">Slope</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="elevation" placeholder="Enter elevation" name="Elevation">
+                                <label for="elevation">Elevation</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="aspect" placeholder=".." name="Aspect">
+                                <label for="aspect">Aspect</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Horizontal_Distance_To_Hydrology" placeholder=".." name="Horizontal_Distance_To_Hydrology">
+                                <label for="Horizontal_Distance_To_Hydrology">Horizontal Distance To Hydrology</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Horizontal_Distance_To_Roadways" placeholder=".." name="Horizontal_Distance_To_Roadways">
+                                <label for="Horizontal_Distance_To_Roadways">Horizontal Distance To Roadways</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Vertical_Distance_To_Hydrology" placeholder=".." name="Vertical_Distance_To_Hydrology">
+                                <label for="Vertical_Distance_To_Hydrology">Vertical Distance To Hydrology</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Horizontal_Distance_To_Fire_Points" placeholder=".." name="Horizontal_Distance_To_Fire_Points">
+                                <label for="Horizontal_Distance_To_Fire_Points">Horizontal Distance To Fire Points</label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Hillshade_Noon" placeholder=".." name="Hillshade_Noon">
+                                <label for="Hillshade_Noon">Hillshade Noon</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Hillshade_3pm" placeholder=".." name="Hillshade_3pm">
+                                <label for="Hillshade_3pm">Hillshade 3pm</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Wilderness_Area1" placeholder=".." name="Wilderness_Area1">
+                                <label for="Wilderness_Area1">Wilderness Area1</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Wilderness_Area2" placeholder=".." name="Wilderness_Area2">
+                                <label for="Wilderness_Area2">Wilderness Area2</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Wilderness_Area3" placeholder=".." name="Wilderness_Area3">
+                                <label for="Wilderness_Area3">Wilderness Area3</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Wilderness_Area4" placeholder=".." name="Wilderness_Area4">
+                                <label for="Wilderness_Area4">Wilderness Area4</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type1" placeholder=".." name="Soil_Type1">
+                                <label for="Soil_Type1">Soil Type1</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type2" placeholder=".." name="Soil_Type2">
+                                <label for="Soil_Type2">Soil Type2</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type3" placeholder=".." name="Soil_Type3">
+                                <label for="Soil_Type3">Soil Type3</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type4" placeholder=".." name="Soil_Type4">
+                                <label for="Soil_Type4">Soil Type4</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type5" placeholder=".." name="Soil_Type5">
+                                <label for="Soil_Type5">Soil Type5</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type6" placeholder=".." name="Soil_Type6">
+                                <label for="Soil_Type6">Soil Type6</label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type8" placeholder=".." name="Soil_Type8">
+                                <label for="Soil_Type8">Soil Type8</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type9" placeholder=".." name="Soil_Type9">
+                                <label for="Soil_Type9">Soil Type9</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type10" placeholder=".." name="Soil_Type10">
+                                <label for="Soil_Type10">Soil Type10</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type11" placeholder=".." name="Soil_Type11">
+                                <label for="Soil_Type1">Soil Type11</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type12" placeholder=".." name="Soil_Type12">
+                                <label for="Soil_Type12">Soil Type12</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type13" placeholder=".." name="Soil_Type13">
+                                <label for="Soil_Type13">Soil Type13</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type14" placeholder=".." name="Soil_Type14">
+                                <label for="Soil_Type14">Soil Type14</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type16" placeholder=".." name="Soil_Type16">
+                                <label for="Soil_Type16">Soil Type16</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type17" placeholder=".." name="Soil_Type17">
+                                <label for="Soil_Type17">Soil Soil_Type17</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type18" placeholder=".." name="Soil_Type18">
+                                <label for="Soil_Type18">Soil Type18</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type19" placeholder=".." name="Soil_Type19">
+                                <label for="Soil_Type19">Soil Type19</label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type20" placeholder=".." name="Soil_Type20">
+                                <label for="Soil_Type20">Soil Type20</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type21" placeholder=".." name="Soil_Type21">
+                                <label for="Soil_Type21">Soil Type21</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type22" placeholder=".." name="Soil_Type22">
+                                <label for="Soil_Type22">Soil Type22</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type23" placeholder=".." name="Soil_Type23">
+                                <label for="Soil_Type23">Soil Type23</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type24" placeholder=".." name="Soil_Type24">
+                                <label for="Soil_Type24">Soil Type24</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type25" placeholder=".." name="Soil_Type25">
+                                <label for="Soil_Type25">Soil Type25</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type26" placeholder=".." name="Soil_Type26">
+                                <label for="Soil_Type26">Soil Type26</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type27" placeholder=".." name="Soil_Type27">
+                                <label for="Soil_Type27">Soil Type27</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type28" placeholder=".." name="Soil_Type28">
+                                <label for="Soil_Type28">Soil Soil_Type28</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type29" placeholder=".." name="Soil_Type29">
+                                <label for="Soil_Type29">Soil Type29</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type30" placeholder=".." name="Soil_Type30">
+                                <label for="Soil_Type30">Soil Type30</label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type31" placeholder=".." name="Soil_Type31">
+                                <label for="Soil_Type31">Soil Type31</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type32" placeholder=".." name="Soil_Type32">
+                                <label for="Soil_Type32">Soil Type32</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type33" placeholder=".." name="Soil_Type33">
+                                <label for="Soil_Type33">Soil Type33</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type34" placeholder=".." name="Soil_Type34">
+                                <label for="Soil_Type34">Soil Type34</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type35" placeholder=".." name="Soil_Type35">
+                                <label for="Soil_Type35">Soil Type35</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type36" placeholder=".." name="Soil_Type36">
+                                <label for="Soil_Type36">Soil Type36</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type37" placeholder=".." name="Soil_Type37">
+                                <label for="Soil_Type37">Soil Type37</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type38" placeholder=".." name="Soil_Type38">
+                                <label for="Soil_Type38">Soil Type38</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type39" placeholder=".." name="Soil_Type39">
+                                <label for="Soil_Type39">Soil Type39</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="number" class="form-control" id="Soil_Type40" placeholder=".." name="Soil_Type40">
+                                <label for="Soil_Type40">Soil Type40</label>
+                            </div>
+                        </div>
+                        <div class="col-12 text-justify">
+                            
+                            <button type="submit" class="btn btn-primary btn-lg">Predict</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

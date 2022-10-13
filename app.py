@@ -28,6 +28,14 @@ def predict_api():
     ## Now I just pick the first and obviously only element in the list. I specified the index to remove the square brackets
     return jsonify(final_output[0])
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    data= [float(x) for x in request.form.values()]
+    final_input = np.array(list(data)).reshape(1,-1)
+    print(final_input)
+    output = rfcmodel.predict(final_input)
+    return render_template("result.html", prediction_text="The predicted cover type is {}".format(output[0]))
+
 ## Run the app now
 if __name__=="__main__":
     app.run(debug=True)
