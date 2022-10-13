@@ -25,7 +25,7 @@ def predict_api():
     print(output[0])
     ## this output is returned as an ndarray. To make it possible to jsonify it, I will convert it to a list
     final_output = output.tolist()
-    ## Now I just pick the first and obviously only element in the list. I specified the index to remove the square brackets from the output.
+    ## Now I just pick the first and obviously only element in the list. I specified the index to remove the square brackets
     return jsonify(final_output[0])
 
 ## Run the app now
