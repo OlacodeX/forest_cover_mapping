@@ -6,7 +6,7 @@ import pandas as pd
 ## Create a new instance of the flask app
 app = Flask(__name__)
 ## Load the model
-rfcmodel = pickle.load(open('rfc_model.pkl', 'rb'))
+rfcmodel = pickle.load(open('newrfc_model.pkl', 'rb'))
 
 ## Define the landing page route
 @app.route('/')
